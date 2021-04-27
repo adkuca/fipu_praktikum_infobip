@@ -46,5 +46,11 @@ describe('#priceListFormatter()', function () {
       priceListFormatter(data);
       expect(log).to.be.calledOnce;
     });
+
+    it('should log string', function () {
+      const log = sinon.spy(console, 'log');
+      priceListFormatter(data);
+      expect(log.args[0][0]).to.be.a('string');
+    });
   });
 });
