@@ -1,7 +1,8 @@
 function priceListFormatter(data) {
   if (!Array.isArray(data) && !data.length) throw new Error();
 
-  const output = createOutput(data);
+  const orderedDataByPrice = [...data].sort((a, b) => a.price - b.price);
+  const output = createOutput(orderedDataByPrice);
 
   console.log(output);
 }
