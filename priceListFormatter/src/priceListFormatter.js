@@ -8,26 +8,42 @@ function priceListFormatter(data) {
   console.log(output);
 }
 
+// function createMapByPrice(data) {
+//   const map = new Map();
+//   data.forEach((item) => {
+//     const dateObj = ({ from, to } = item);
+//     const r = map.get(item.price);
+//     map.set(item.price, r ? [...r, dateObj] : [dateObj]);
+//   });
+
+//   return map;
+// }
+
 function createMapByPrice(data) {
-  const map = new Map();
-  data.forEach((item) => {
+  return data.reduce((map, item) => {
     const dateObj = ({ from, to } = item);
     const r = map.get(item.price);
-    map.set(item.price, r ? [...r, dateObj] : [dateObj]);
-  });
-
-  return map;
+    return map.set(item.price, r ? [...r, dateObj] : [dateObj]);
+  }, new Map());
 }
 
-function createOutput(data) {
-  let output = '';
-  data.forEach((value, key) => {
-    const dateArr = value.map((dateObj) => `${dateObj.from} do ${dateObj.to}`);
-    const dateStr = dateArr.join(' , ');
-    output += `${key.toFixed('1')} : ${dateStr}\n`;
-  });
+// function createOutput(data) {
+//   let output = '';
+//   data.forEach((value, key) => {
+//     const dateStr = value.map((dateObj) => `${dateObj.from} do ${dateObj.to}`).join(' , ');
+//     output += `${key.toFixed('1')} : ${dateStr}\n`;
+//   });
 
-  return output.trimEnd();
+//   return output.trimEnd();
+// }
+
+function createOutput(data) {
+  return Array.from(data)
+    .reduce((output, [key, value]) => {
+      const dateStr = value.map((dateObj) => `${dateObj.from} do ${dateObj.to}`).join(' , ');
+      return (output += `${key.toFixed('1')} : ${dateStr}\n`);
+    }, '')
+    .trimEnd();
 }
 
 module.exports = priceListFormatter;
