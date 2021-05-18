@@ -1,11 +1,33 @@
 function trigramGenerator(text) {
   if (typeof text !== 'string') throw new Error();
 
-  const words = text.split(' ');
+  const words = parseText(text);
+  const chunks = generateChunks(words);
 
-  if (words.length < 3) return new Map();
-
-  return new Map([[words.slice(0, 2).join(' '), [words[2]]]]);
+  return generateTrigrams(chunks);
 }
 
-module.exports = trigramGenerator;
+function parseText(text) {
+  return text.trim().split(/\s+/g);
+}
+
+function generateChunks(words) {
+  return words.slice(0, words.length - 2).reduce((arr, word, i) => {
+    arr.push(words.slice(i, i + 3));
+    return arr;
+  }, []);
+}
+
+function generateTrigrams(chunks) {
+  return chunks.reduce((map, words) => {
+    const key = `${words[0]} ${words[1]}`;
+    const value = map.get(key);
+    return map.set(key, value ? [...value, words[2]] : [words[2]]);
+  }, new Map());
+}
+
+module.exports = {
+  trigramGenerator,
+  generateChunks,
+  parseText,
+};
