@@ -1,7 +1,12 @@
 const chai = require('chai');
 const { expect } = chai;
 
-const { trigramGenerator, generateChunks, parseText } = require('../trigramGenerator.js');
+const {
+  trigramGenerator,
+  generateChunks,
+  interpunctionHandler,
+  whitespaceHandler,
+} = require('../trigramGenerator.js');
 
 describe('#trigramGenerator()', function () {
   it('should be a function', function () {
@@ -63,30 +68,90 @@ describe('#trigramGenerator()', function () {
     );
   });
 
+  const sevenWordsInputTrigram = new Map([
+    ['I wish', ['I', 'I']],
+    ['wish I', ['may']],
+    ['I may', ['I']],
+    ['may I', ['wish']],
+  ]);
+
   it(`should return correct trigram for 7 words input`, function () {
-    expect(trigramGenerator('I wish I may I wish I')).to.eql(
-      new Map([
-        ['I wish', ['I', 'I']],
-        ['wish I', ['may']],
-        ['I may', ['I']],
-        ['may I', ['wish']],
-      ])
-    );
+    expect(trigramGenerator('I wish I may I wish I')).to.eql(sevenWordsInputTrigram);
+  });
+
+  it(`should return correct trigram for 7 words with whitespace as input`, function () {
+    expect(trigramGenerator('I wish\n I   may \tI \n\rwish I')).to.eql(sevenWordsInputTrigram);
+  });
+
+  context('text parsing', function () {
+    it('should be letter capitalisation agnostic', function () {
+      const text = 'Evo neka bude netko';
+      const initial = trigramGenerator(text);
+      const lowerCased = trigramGenerator(text.toLocaleLowerCase());
+      expect(initial).to.eql(lowerCased);
+    });
+
+    it("should have pronoun 'I' correctly uppercase", function () {
+      expect(trigramGenerator('Ivan with i or I')).to.eql(
+        new Map([
+          ['ivan with', ['I']],
+          ['with I', ['or']],
+          ['I or', ['I']],
+        ])
+      );
+    });
+
+    it('handles punctuation as a separate word', function () {
+      expect(trigramGenerator('I am.')).to.eql(new Map([['I am', ['.']]]));
+      expect(trigramGenerator('I a@email.com.')).to.eql(new Map([['I a@email.com', ['.']]]));
+      expect(trigramGenerator('I am,')).to.eql(new Map([['I am', [',']]]));
+      expect(trigramGenerator('I am;')).to.eql(new Map([['I am', [';']]]));
+      expect(trigramGenerator('I am:')).to.eql(new Map([['I am', [':']]]));
+      expect(trigramGenerator('I am!')).to.eql(new Map([['I am', ['!']]]));
+      expect(trigramGenerator('I am?')).to.eql(new Map([['I am', ['?']]]));
+      expect(trigramGenerator('I am?!')).to.eql(new Map([['I am', ['?!']]]));
+      expect(trigramGenerator('I am...')).to.eql(new Map([['I am', ['...']]]));
+      expect(trigramGenerator('“Says: "I am?"[w](ok){1}.”')).to.eql(
+        new Map([
+          ['“ says', [':']],
+          ['says :', ['"']],
+          [': "', ['I']],
+          ['" I', ['am']],
+          ['I am', ['?']],
+          ['am ?', ['"']],
+          ['am ?', ['"']],
+          ['? "', ['[']],
+          ['" [', ['w']],
+          ['[ w', [']']],
+          ['w ]', ['(']],
+          ['] (', ['ok']],
+          ['( ok', [')']],
+          ['ok )', ['{']],
+          [') {', ['1']],
+          ['{ 1', ['}']],
+          ['1 }', ['.']],
+          ['} .', ['”']],
+        ])
+      );
+    });
   });
 });
 
-describe('#parseText()', function () {
-  it('should return correct array with given text as input', function () {
-    expect(parseText('')).to.eql(['']);
-    expect(parseText('I wish')).to.eql(['I', 'wish']);
-    expect(parseText('I wish, I may.')).to.eql(['I', 'wish,', 'I', 'may.']);
+describe('#whitespaceHandler()', function () {
+  it('should return correct string', function () {
+    expect(whitespaceHandler('I  wish')).to.equal('I wish');
+    expect(whitespaceHandler('I\twish')).to.equal('I wish');
+    expect(whitespaceHandler('I\nwish')).to.equal('I wish');
+    expect(whitespaceHandler('I\r\nwish')).to.equal('I wish');
   });
+});
 
-  it('should return correct array ignoring whitespace', function () {
-    expect(parseText('I  wish')).to.eql(['I', 'wish']);
-    expect(parseText('I\twish')).to.eql(['I', 'wish']);
-    expect(parseText('I\nwish')).to.eql(['I', 'wish']);
-    expect(parseText('I\n\rwish')).to.eql(['I', 'wish']);
+describe('#interpunctionHandler()', function () {
+  it('should return correct string', function () {
+    expect(interpunctionHandler('I am.')).to.equal('I am .');
+    expect(interpunctionHandler('I a@email.com.')).to.equal('I a@email.com .');
+    expect(interpunctionHandler(',;:!??!...')).to.equal(', ; : ! ? ?! ...');
+    expect(interpunctionHandler('“”‘’"\'`{}()[]')).to.equal('“ ” ‘ ’ " \' ` { } ( ) [ ]');
   });
 });
 

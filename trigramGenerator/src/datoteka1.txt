@@ -1,0 +1,37 @@
+Project management has long been a people-led aspect of the workplace, but that has slowly been changing. Trends in automation, big data, and AI have not only ushered in a new wave of project management applications, but they have led to a stronger culture of people willing to use them. Today, one of the startups building a platform for the next generation of project management is announcing some funding — a sign of the traction it’s getting in the market.
+
+Forecast, a platform and startup of the same name that uses AI to help with project management and resource planning — put simply, it uses artificial intelligence to both “read” and integrate data from different enterprise applications in order to build a bigger picture of the project and potential outcomes — has raised $19 million to continue building out its business.
+
+The company plans to use some of the funding to expand to the U.S., and some to continue building out its platform and business, headquartered in London with a development office also in Copenhagen.
+
+
+This funding, a Series A, comes less than a year after the startup’s commercial launch, and it was led by Balderton Capital, with previous investors Crane Ventures Partners, SEED Capital and Heartcore also participating.
+
+Forecast closed a seed round in November 2019 and then launched just as the pandemic was kicking off. It was a time when some projects were indeed put on ice, but others that went ahead did so with more caution on all sorts of fronts — financial, organizational, and technical. It turned out to be a “right place, right time” moment for Forecast, a tool that plays directly into providing a technical platform to manage all of that in a better way, and it tripled revenues during the year. Its customers include the likes of the NHS, the Red Cross, Etain and more. It says over 150,000 projects have been created and run through its platform to date.
+
+Project management — the process of planning what you need to do, assigning resources to the task and tracking how well all of that actually goes to plan — has long been stuck between a rock and a hard place in the world of work.
+
+It can be essential to getting things done, especially when there are multiple departments or stakeholders involved; yet it’s forever an inexact science that often does not reflect all the complexities of an actual project, and therefore may not be as useful as it could or should be.
+
+This was a predicament that founder and CEO Dennis Kayser knew all too well, having been an engineer and technical lead on a number of big projects himself. His pedigree is an interesting one: one of his early jobs was as a developer at Varien, where he built the first version of Magento. (The company was eventually rebranded as Magento and then acquired by eBay, then spun out, then acquired again, this time by Adobe for nearly $1.7 billion, and now a huge player in the world of e-commerce tools.) He also spent years as a consultant at IBM, where among other things he helped build and formulate the first versions of ikea.com.
+
+In those and other projects, he saw the pitfalls of project management not done right — not just in terms of having the right people on a project at the right time, but the resource planning needed, better calculations of financial outcomes in the event of a decision going one way or the other, and so on.
+
+(He didn’t say this outright, but I’m sure one of the points of contention was the fact that the first ikea.com site didn’t actually have any e-commerce in it, just a virtual window display of sorts. That would have been because Ikea wanted to keep people shopping in its stores, away from the efficiency of just buying the one thing you actually need and not the 10 you do not. Yes, there are plenty of ways now of recirculating people to buy more when you select one item for a shopping cart — something the likes of Amazon has totally mastered — but this was years ago when there was still even more opportunities for innovation than there are now. All of this is to say that you might very reasonably argue that had there been better project managing and resource planning tools to give forecasts of potential outcomes of one or another route taken, people advocating for a different approach could have made their case better. And maybe Ikea would have jumped on board with digital commerce far sooner than it did.)
+
+“Typically you get a lot of spreadsheets, people scattered across different tools that include accounting, CRM, Gitlab and more,” Kayser said.
+
+That became the impetus for trying to build something that can take all of that into account and make a project management tool that — rather than just being a way of accounting to a higher-up, or reflecting only what someone can be bothered to update in the system — something that can help a team.
+
+“Connecting everything into our engine, we leverage data to understand what they are working on and what is the right thing to be working on, what the finances are looking like,” he continued. “So if you work in product, you can plan out who is where, and what resourcing you need, what kind of people and skills you require.” This is a more dynamic progression of some of the other newer tools that are being used for project management today, targeting, in his words, “people who graduate from Monday and Asana who need something ore robust, either because they have too many people working on a project or because its too complicated, there is just too much stuff to handle.”
+
+More legacy tools he said that are used include Oracle “to some degree” and Mavenlink, which he describes as possibly Forecast’s closest competitor, “but its platform is aging.”
+
+Currently the Forecast platform has some 26 integrations of popular tools used for projects to produce its insights and intelligence, including Salesforce, Gitlab, Google Calendar, and, as it happens, Asana. But given how fragmented the market is, and the signals one might gain from any number of other resources and apps, I suspect that this list will grow as and when its customers need more supported, or Forecast works out what can be gleaned from different places to paint an even more accurate picture.
+
+The result may not ever replace an actual human project manager, but certainly starts to then look like a “digital twin” (a phrase I have been hearing more and more these days) that will definitely help that person, and the rest of the team, work in a smarter way.
+
+“We are really excited to be an early investor in Forecast,” said James Wise,  a partner at Balderton Capital, in a statement. “We share their belief that the next generation of SaaS products will be more than just collaboration tools, but use machine learning to actively solve problems for their users. The feedback we got from Forecast’s customers was quite incredible, both in their praise for the platform and in how much of a difference it had already made to their operations. We look forward to supporting the company to scale this impact going forward.”
+
+"He was like: "Hello?"."
+"I will try".

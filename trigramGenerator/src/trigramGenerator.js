@@ -1,14 +1,27 @@
 function trigramGenerator(text) {
   if (typeof text !== 'string') throw new Error();
 
-  const words = parseText(text);
-  const chunks = generateChunks(words);
+  const words = textParser(text);
+  const chunks = generateChunks(lowerCaseExceptPronounI(words));
 
   return generateTrigrams(chunks);
 }
 
-function parseText(text) {
-  return text.trim().split(/\s+/g);
+function lowerCaseExceptPronounI(words) {
+  return words.map((word) => word.toLowerCase().replace(/(?<=\b)i(?=\b)/g, 'I'));
+}
+
+function textParser(text) {
+  return interpunctionHandler(text).split(' ');
+}
+
+function interpunctionHandler(text) {
+  text = text.replace(/(?:(?:\.{3}|\?!|[,;:.!?])\B|[“”‘’"'`{}()[\]])/g, ' $& ');
+  return whitespaceHandler(text);
+}
+
+function whitespaceHandler(text) {
+  return text.replace(/\s+/g, ' ').trim();
 }
 
 function generateChunks(words) {
@@ -29,5 +42,6 @@ function generateTrigrams(chunks) {
 module.exports = {
   trigramGenerator,
   generateChunks,
-  parseText,
+  interpunctionHandler,
+  whitespaceHandler,
 };
