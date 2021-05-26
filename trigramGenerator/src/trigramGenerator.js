@@ -12,12 +12,15 @@ function lowerCaseExceptPronounI(words) {
 }
 
 function textParser(text) {
-  return interpunctionHandler(text).split(' ');
+  const interpunctionReactText = interpunctionHandler(text);
+  return whitespaceHandler(interpunctionReactText).split(' ');
 }
 
 function interpunctionHandler(text) {
-  text = text.replace(/(?:(?:\.{3}|\?!|[,;:.!?])\B|[“”‘’"'`{}()[\]])/g, ' $& ');
-  return whitespaceHandler(text);
+  return text
+    .replace(/(?:(?:\.{3}|\?!|[,;:.!?])\B|[“”‘’"'`{}()[\]])/g, ' $& ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function whitespaceHandler(text) {
