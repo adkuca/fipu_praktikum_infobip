@@ -3,8 +3,6 @@ const { expect } = chai;
 
 const { bigramGenerator, generateChunks } = require('../bigramGenerator.js');
 
-const { interpunctionHandler, whitespaceHandler } = require('../../helpers/helpers.js');
-
 describe('#bigramGenerator()', function () {
   it('should be a function', function () {
     expect(bigramGenerator).to.be.a('function');
@@ -23,8 +21,7 @@ describe('#bigramGenerator()', function () {
   });
 
   it('should return an object', function () {
-    // expect(bigramGenerator('')).to.be.an('object');
-    expect(typeof bigramGenerator('')).to.equal('object');
+    expect(bigramGenerator('')).to.be.a('map');
   });
 
   it(`should return correct bigram for 1 word input`, function () {
@@ -138,24 +135,6 @@ describe('#bigramGenerator()', function () {
         ])
       );
     });
-  });
-});
-
-describe('#whitespaceHandler()', function () {
-  it('should return correct string', function () {
-    expect(whitespaceHandler('I  wish')).to.equal('I wish');
-    expect(whitespaceHandler('I\twish')).to.equal('I wish');
-    expect(whitespaceHandler('I\nwish')).to.equal('I wish');
-    expect(whitespaceHandler('I\r\nwish')).to.equal('I wish');
-  });
-});
-
-describe('#interpunctionHandler()', function () {
-  it('should return correct string', function () {
-    expect(interpunctionHandler('I am.')).to.equal('I am .');
-    expect(interpunctionHandler('I a@email.com.')).to.equal('I a@email.com .');
-    expect(interpunctionHandler(',;:!??!...')).to.equal(', ; : ! ? ?! ...');
-    expect(interpunctionHandler('“”‘’"\'`{}()[]')).to.equal('“ ” ‘ ’ " \' ` { } ( ) [ ]');
   });
 });
 

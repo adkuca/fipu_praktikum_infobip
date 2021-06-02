@@ -1,7 +1,7 @@
 const chai = require('chai');
 const { expect } = chai;
 
-const { interpunctionHandler, whitespaceHandler } = require('../helpers.js');
+const { interpunctionHandler, whitespaceHandler } = require('../ngramShared.js');
 
 describe('#whitespaceHandler()', function () {
   it('should return correct string', function () {
@@ -18,5 +18,6 @@ describe('#interpunctionHandler()', function () {
     expect(interpunctionHandler('I a@email.com.')).to.equal('I a@email.com .');
     expect(interpunctionHandler(',;:!??!...')).to.equal(', ; : ! ? ?! ...');
     expect(interpunctionHandler('“”‘’"\'`{}()[]')).to.equal('“ ” ‘ ’ " \' ` { } ( ) [ ]');
+    expect(interpunctionHandler("won't")).to.equal("won't");
   });
 });

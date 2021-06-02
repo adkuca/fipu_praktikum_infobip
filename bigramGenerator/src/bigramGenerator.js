@@ -1,7 +1,7 @@
 function bigramGenerator(text) {
   if (typeof text !== 'string') throw new Error();
 
-  const words = textParser(text);
+  const words = textToWordsParser(text);
   const chunks = generateChunks(lowerCaseExceptPronounI(words));
 
   return generateBigrams(chunks);
@@ -11,7 +11,7 @@ function lowerCaseExceptPronounI(words) {
   return words.map((word) => word.toLowerCase().replace(/(?<=\b)i(?=\b)/g, 'I'));
 }
 
-function textParser(text) {
+function textToWordsParser(text) {
   const interpunctionReactText = interpunctionHandler(text);
   return whitespaceHandler(interpunctionReactText).split(' ');
 }

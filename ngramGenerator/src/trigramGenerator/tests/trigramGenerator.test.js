@@ -3,8 +3,6 @@ const { expect } = chai;
 
 const { trigramGenerator, generateChunks } = require('../trigramGenerator.js');
 
-const { interpunctionHandler, whitespaceHandler } = require('../../helpers/helpers.js');
-
 describe('#trigramGenerator()', function () {
   it('should be a function', function () {
     expect(trigramGenerator).to.be.a('function');
@@ -23,8 +21,7 @@ describe('#trigramGenerator()', function () {
   });
 
   it('should return an object', function () {
-    // expect(trigramGenerator('')).to.be.an('object');
-    expect(typeof trigramGenerator('')).to.equal('object');
+    expect(trigramGenerator('')).to.be.a('map');
   });
 
   it(`should return correct trigram for 2 words input`, function () {
@@ -131,24 +128,6 @@ describe('#trigramGenerator()', function () {
         ])
       );
     });
-  });
-});
-
-describe('#whitespaceHandler()', function () {
-  it('should return correct string', function () {
-    expect(whitespaceHandler('I  wish')).to.equal('I wish');
-    expect(whitespaceHandler('I\twish')).to.equal('I wish');
-    expect(whitespaceHandler('I\nwish')).to.equal('I wish');
-    expect(whitespaceHandler('I\r\nwish')).to.equal('I wish');
-  });
-});
-
-describe('#interpunctionHandler()', function () {
-  it('should return correct string', function () {
-    expect(interpunctionHandler('I am.')).to.equal('I am .');
-    expect(interpunctionHandler('I a@email.com.')).to.equal('I a@email.com .');
-    expect(interpunctionHandler(',;:!??!...')).to.equal(', ; : ! ? ?! ...');
-    expect(interpunctionHandler('“”‘’"\'`{}()[]')).to.equal('“ ” ‘ ’ " \' ` { } ( ) [ ]');
   });
 });
 

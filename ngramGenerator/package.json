@@ -1,0 +1,21 @@
+{
+  "name": "vj_infb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "mocha **/tests/*.test.js",
+    "watch": "mocha -w --watch-ignore node_modules,.git **/tests/*.test.js",
+    "watch-s": "mocha -w --watch-ignore node_modules,.git **/suggest/tests/*.test.js",
+    "watch-r": "mocha -w --watch-ignore node_modules,.git **/randomTextGenerator/tests/*.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "bigram-generator": "file:src\\bigramGenerator",
+    "helpers": "file:src\\helpers",
+    "trigram-generator": "file:src\\trigramGenerator",
+    "suggest": "file:src\\suggest"
+  }
+}

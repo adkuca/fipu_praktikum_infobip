@@ -1,14 +1,9 @@
-const {
-  interpunctionHandler,
-  whitespaceHandler,
-  textParser,
-  lowerCaseExceptPronounI,
-} = require('../helpers/helpers.js');
+const { textToWordsParser, lowerCaseExceptPronounI } = require('../helpers/ngramShared.js');
 
 function trigramGenerator(text) {
   if (typeof text !== 'string') throw new Error();
 
-  const words = textParser(text);
+  const words = textToWordsParser(text);
   const chunks = generateChunks(lowerCaseExceptPronounI(words));
 
   return generateTrigrams(chunks);
