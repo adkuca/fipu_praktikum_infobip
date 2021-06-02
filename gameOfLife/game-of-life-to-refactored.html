@@ -1,0 +1,106 @@
+<script>
+  var width = 400;
+  var height = 400;
+  var currentBoardState = createEmptyGrid(width, height);
+  var nextBoardState = createEmptyGrid(width, height);
+
+  function initializeBoard() {
+    for (var j = 0; j < width; j++) {
+      for (var k = 0; k < height; k++) {
+        currentBoardState[j][k] = generateRandomBit();
+      }
+    }
+  }
+
+  function generateRandomBit() {
+    return Math.floor(Math.random() * 2);
+  }
+
+  function main() {
+    initializeBoard();
+    runGameOfLife();
+  }
+
+  //functions
+  function runGameOfLife() {
+    //this is first part of function
+    drawCurrentBoardStateOntoCanvas();
+    //this is second part of the function
+    calculateBoardState();
+    requestAnimationFrame(runGameOfLife);
+  }
+
+  function createEmptyGrid(width, height) {
+    var grid = [];
+    for (var j = 0; j < width; j++) {
+      for (var k = 0; k < height; k++) {
+        grid[j] = [];
+      }
+    }
+    return grid;
+  }
+
+  function drawCurrentBoardStateOntoCanvas() {
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, 400, 400);
+    for (var j = 1; j < width; j++) {
+      //first loop
+      for (var k = 1; k < height; k++) {
+        //second loop
+        if (currentBoardState[j][k] === 1) {
+          ctx.fillStyle = '#FF0000';
+          ctx.fillRect(j, k, 1, 1);
+        }
+      }
+    }
+  }
+
+  function calculateBoardState() {
+    //this is second part of the function
+    for (var j = 1; j < width - 1; j++) {
+      //first loop
+      for (var k = 1; k < height - 1; k++) {
+        //second loop
+        //apply the rules to each cell
+        const aliveSurroundingCellsCount = countAliveSurroundingCells(j, k);
+        const isCurrentCellAlive = currentBoardState[j][k];
+
+        if (!isCurrentCellAlive) nextBoardState[j][k] = +(aliveSurroundingCellsCount === 3);
+        else if (isCurrentCellAlive)
+          nextBoardState[j][k] = +(
+            aliveSurroundingCellsCount === 2 || aliveSurroundingCellsCount === 3
+          );
+      }
+    }
+
+    setNextBoardStateAsCurrent();
+  }
+
+  function countAliveSurroundingCells(xPosition, yPosition) {
+    return (
+      currentBoardState[xPosition - 1][yPosition - 1] +
+      currentBoardState[xPosition - 1][yPosition] +
+      currentBoardState[xPosition - 1][yPosition + 1] +
+      currentBoardState[xPosition][yPosition - 1] +
+      currentBoardState[xPosition][yPosition + 1] +
+      currentBoardState[xPosition + 1][yPosition - 1] +
+      currentBoardState[xPosition + 1][yPosition] +
+      currentBoardState[xPosition + 1][yPosition + 1]
+    );
+  }
+
+  function setNextBoardStateAsCurrent() {
+    for (var j = 0; j < width; j++) {
+      for (var k = 0; k < height; k++) {
+        currentBoardState[j][k] = nextBoardState[j][k];
+      }
+    }
+  }
+</script>
+
+<html>
+  <body onload="main()">
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+  </body>
+</html>
