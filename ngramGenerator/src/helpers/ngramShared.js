@@ -9,7 +9,10 @@ function textToWordsParser(text) {
 
 function interpunctionHandler(text) {
   return text
-    .replace(/(?:(?:\.{3}|\?!|[,;:.!?])\B|\B[“”‘’"'`{}()[\]]|[“”‘’"'`{}()[\]]\B)/g, ' $& ')
+    .replace(
+      /(?:\.{2,}|[.!,;:?…]+(?=\s|[“”‘’"'`{}()[\]]|$)|\B[“”‘’"'`{}()[\]]|[“”‘’"'`{}()[\]]\B)/g,
+      ' $& '
+    )
     .replace(/\s+/g, ' ')
     .trim();
 }
