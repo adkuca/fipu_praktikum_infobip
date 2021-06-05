@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const readFile = 'datoteka1.txt';
 
-const text = fs.readFileSync(`./${readFile}`, 'utf8');
+const text = fs.readFileSync(`${__dirname}/${readFile}`, 'utf8');
 
 const words = process.argv.slice(2);
 

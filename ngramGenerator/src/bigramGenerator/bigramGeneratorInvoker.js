@@ -4,11 +4,11 @@ const fs = require('fs');
 const readFile = 'datoteka1.txt';
 const writeFile = 'datoteka2.txt';
 
-const text = fs.readFileSync(`./${readFile}`, 'utf8');
+const text = fs.readFileSync(`${__dirname}/${readFile}`, 'utf8');
 
 const result = bigramGenerator(text);
 
-fs.writeFileSync(`./${writeFile}`, buildOutput(result), 'utf8');
+fs.writeFileSync(`${__dirname}/${writeFile}`, buildOutput(result), 'utf8');
 console.log(result);
 
 function buildOutput(map) {

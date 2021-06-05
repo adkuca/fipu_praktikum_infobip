@@ -15,7 +15,8 @@
   "devDependencies": {
     "bigram-generator": "file:src\\bigramGenerator",
     "helpers": "file:src\\helpers",
-    "trigram-generator": "file:src\\trigramGenerator",
-    "suggest": "file:src\\suggest"
+    "random-text-generator": "file:src\\randomTextGenerator",
+    "suggest": "file:src\\suggest",
+    "trigram-generator": "file:src\\trigramGenerator"
   }
 }
