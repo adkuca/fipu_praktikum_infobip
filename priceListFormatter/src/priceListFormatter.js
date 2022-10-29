@@ -1,5 +1,5 @@
 function priceListFormatter(data) {
-  if (!Array.isArray(data) && !data.length) throw new Error();
+  if (!Array.isArray(data) || !data.length) throw new Error();
 
   const orderedDataByPrice = [...data].sort((a, b) => a.price - b.price);
   const dataMap = createMapByPrice(orderedDataByPrice);
